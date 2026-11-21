@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>toybox apps</title>
-<meta name="description" content="個人で開発しているスマホアプリとWebツールの入口です。通知おやすみ、天気壁紙、サブスク番人、10万回タップしたらいいことあるかも、とんずら回収ナビ、ごみ収集日ガイド。">
+<meta name="description" content="個人で開発しているスマホアプリとWebツールの入口です。通知おやすみ、株主優待カレンダー、天気壁紙、サブスク番人、10万回タップしたらいいことあるかも、とんずら回収ナビ、ごみ収集日ガイド。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
@@ -56,6 +56,7 @@
   a:focus-visible, .install:focus-visible { outline: 4px solid #000000; outline-offset: 2px; box-shadow: 0 0 0 2px #ffd43d; }
   /* リンクは上下に余白をとって、押せる範囲を広げる */
   .app a, .small-link { display: inline-block; padding: 4px 0; }
+  .app .links { display: flex; flex-wrap: wrap; column-gap: 24px; }
 
   @media (max-width: 720px) {
     .feature { flex-direction: column; align-items: flex-start; gap: 32px; }
@@ -93,6 +94,12 @@
     <section class="others" aria-labelledby="others-title">
       <h2 id="others-title">ほかのアプリとツール</h2>
 
+      <div class="app" id="yutai-calendar">
+        <h3>株主優待カレンダー<span class="kind">iPhone・Android</span></h3>
+        <p>持っている株主優待の権利付き最終日・届く時期・優待券の期限をまとめて管理し、権利日を知らせる無料アプリです。</p>
+        <p class="links"><a href="https://play.google.com/store/apps/details?id=com.yutaicalendar.app">Google Play で見る</a><a href="https://apps.apple.com/jp/app/id6811076037">App Store で見る</a></p>
+      </div>
+
       <div class="app" id="weather-wallpaper">
         <h3>天気壁紙<span class="kind">Android</span></h3>
         <p>その日の天気に合わせて、ホーム画面の壁紙に「傘いるよ」などのひとことを大きく出すライブ壁紙です。帰りの雨や傘の置き忘れにも気づけます。</p>
@@ -100,9 +107,9 @@
       </div>
 
       <div class="app" id="subs-keeper">
-        <h3>サブスク番人<span class="kind">Android</span></h3>
+        <h3>サブスク番人<span class="kind">iPhone・Android</span></h3>
         <p>サブスクの更新日の前に知らせて、解約忘れを防ぐ管理アプリです。</p>
-        <p><a href="https://play.google.com/store/apps/details?id=com.subs_keeper">Google Play で見る</a></p>
+        <p class="links"><a href="https://play.google.com/store/apps/details?id=com.subs_keeper">Google Play で見る</a><a href="https://apps.apple.com/jp/app/id6825387587">App Store で見る</a></p>
       </div>
 
       <div class="app" id="tap100k">
