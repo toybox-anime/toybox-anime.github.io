@@ -4,21 +4,126 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>toybox apps</title>
+<meta name="description" content="個人で開発しているスマホアプリとWebツールの入口です。通知おやすみ、天気壁紙、サブスク番人、10万回タップしたらいいことあるかも、とんずら回収ナビ、ごみ収集日ガイド。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  body { font-family: system-ui, sans-serif; max-width: 720px; margin: 0 auto; padding: 24px; line-height: 1.8; color: #1c1f27; background: #fafafa; }
-  h1 { font-size: 22px; } h2 { font-size: 17px; margin-top: 28px; }
-  .muted { color: #666; font-size: 14px; }
+  /* 全アプリの入口。主役は1つ(通知おやすみ)だけ大きく、ほかは左揃えの名前・ひとこと・リンクを余白で区切る。
+     寸法はデジタル庁デザインシステム、色は通知おやすみの紺だけ */
+  :root {
+    --ink: #1a1a1c;
+    --sub: #5c5f66;
+    --line: #d9dbe0;
+    --bg: #ffffff;
+    --brand: #0e1326;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font-family: "Noto Sans JP", sans-serif; font-size: 16px; line-height: 1.7; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 24px 20px 48px; }
+  p, li { word-break: auto-phrase; }
+  h1, h2, h3 { text-wrap: balance; }
+  header { margin: 0 0 40px; }
+  h1 { font-size: 20px; line-height: 1.5; margin: 0; }
+  header p { color: var(--sub); margin: 4px 0 0; }
+
+  .feature { display: flex; gap: 48px; align-items: center; scroll-margin-top: 16px; }
+  .feature-text { flex: 1 1 0; min-width: 0; }
+  .feature h2 { font-size: 32px; line-height: 1.5; margin: 0 0 16px; }
+  .lead { font-size: 18px; margin: 0 0 32px; }
+  .install {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 136px; min-height: 56px; padding: 12px 16px; border-radius: 8px;
+    background: var(--brand); color: #ffffff; text-decoration: none;
+    font-size: 16px; font-weight: 700; line-height: 1; letter-spacing: 0.02em;
+  }
+  .install:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .note { color: var(--sub); margin: 12px 0 0; }
+  .shot { flex: 0 0 270px; margin: 0; }
+  .shot img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 8px; }
+  .feature-more { margin: 32px 0 0; max-width: 640px; }
+  .feature-more p { margin: 0 0 12px; }
+
+  .others { margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--line); max-width: 640px; }
+  .others > h2 { font-size: 24px; line-height: 1.5; margin: 0 0 8px; }
+  .app { margin: 32px 0 0; scroll-margin-top: 16px; }
+  .app h3 { font-size: 20px; line-height: 1.5; margin: 0; }
+  .app .kind { color: var(--sub); font-size: 16px; font-weight: 400; margin-left: 8px; }
+  .app p { margin: 4px 0 0; }
+
+  a { color: var(--ink); text-underline-offset: 3px; }
+  a:focus-visible, .install:focus-visible { outline: 4px solid #000000; outline-offset: 2px; box-shadow: 0 0 0 2px #ffd43d; }
+  /* リンクは上下に余白をとって、押せる範囲を広げる */
+  .app a, .small-link { display: inline-block; padding: 4px 0; }
+
+  @media (max-width: 720px) {
+    .feature { flex-direction: column; align-items: flex-start; gap: 32px; }
+    .shot { flex-basis: auto; width: min(240px, 100%); }
+    .feature h2 { font-size: 28px; }
+  }
 </style>
 </head>
 <body>
-<h1>toybox apps</h1>
-<p class="muted">個人で開発しているAndroidアプリのページです。</p>
+<div class="wrap">
+  <header>
+    <h1>toybox apps</h1>
+    <p>個人で開発しているスマホアプリとWebツールです。</p>
+  </header>
 
-<h2>通知おやすみ - ワンタップで通知オフ</h2>
-<p>ボタンひとつで、すべての通知を決めた時間だけ止めるアプリです。止めている間に届いた通知は、あとから読めます。</p>
-<ul>
-  <li><a href="https://play.google.com/store/apps/details?id=com.toybox.tsuchioff">Google Play</a></li>
-  <li><a href="tsuchi-off-site/privacy.html">プライバシーポリシー / Privacy Policy</a></li>
-</ul>
+  <main>
+    <section id="tsuchi-off" aria-labelledby="tsuchi-off-title">
+      <div class="feature">
+        <div class="feature-text">
+          <h2 id="tsuchi-off-title">通知おやすみ</h2>
+          <p class="lead">ボタンひとつで、決めた時間だけすべての通知を止めます。止めている間に届いた通知は、あとから読めます。</p>
+          <a class="install" href="https://play.google.com/store/apps/details?id=com.toybox.tsuchioff">Google Play でインストールする</a>
+          <p class="note">Android 8.0 以上・無料(画面の下に広告が出ます)</p>
+        </div>
+        <figure class="shot">
+          <img src="img/tsuchi-off-paused.png" alt="通知おやすみで通知を止めている画面。「通知を止めています」「あと2時間13分」と、残り時間を示す輪と「解除する」ボタン" width="540" height="1200">
+        </figure>
+      </div>
+      <div class="feature-more">
+        <p>30分・1時間・朝まで・時刻指定から長さを選んで、ボタンを押すだけです。時間が来たら自動で元に戻ります。「毎日 23:00〜7:00」のようなスケジュールで自動で止めることも、家族の連絡など止めたくないアプリや電話だけを通すこともできます。</p>
+        <p>通知の内容はスマホの中だけで扱い、外部には送りません。<a class="small-link" href="tsuchi-off-site/privacy.html">プライバシーポリシー / Privacy Policy</a></p>
+      </div>
+    </section>
+
+    <section class="others" aria-labelledby="others-title">
+      <h2 id="others-title">ほかのアプリとツール</h2>
+
+      <div class="app" id="weather-wallpaper">
+        <h3>天気壁紙<span class="kind">Android</span></h3>
+        <p>その日の天気に合わせて、ホーム画面の壁紙に「傘いるよ」などのひとことを大きく出すライブ壁紙です。帰りの雨や傘の置き忘れにも気づけます。</p>
+        <p><a href="https://play.google.com/store/apps/details?id=com.toybox.weatherwallpaper">Google Play で見る</a></p>
+      </div>
+
+      <div class="app" id="subs-keeper">
+        <h3>サブスク番人<span class="kind">Android</span></h3>
+        <p>サブスクの更新日の前に知らせて、解約忘れを防ぐ管理アプリです。</p>
+        <p><a href="https://play.google.com/store/apps/details?id=com.subs_keeper">Google Play で見る</a></p>
+      </div>
+
+      <div class="app" id="tap100k">
+        <h3>10万回タップしたらいいことあるかも(TAP100K)<span class="kind">Android</span></h3>
+        <p>ツンデレに煽られながら10万回タップするだけのアプリです。</p>
+        <p><a href="https://play.google.com/store/apps/details?id=com.nanotoylab.tap100k">Google Play で見る</a></p>
+      </div>
+
+      <div class="app" id="tonzura-navi">
+        <h3>とんずら回収ナビ<span class="kind">Web</span></h3>
+        <p>PayPay で送金したあと相手と連絡が取れないときに、取り消せるかの確認や証拠の整理など、やることを順番に案内する無料のツールです。</p>
+        <p><a href="https://toybox-anime.github.io/tonzura-navi/">とんずら回収ナビを開く</a></p>
+      </div>
+
+      <div class="app" id="toyota-gomi">
+        <h3>ごみ収集日ガイド<span class="kind">Web</span></h3>
+        <p>愛知県豊田市の自治区ごとに、ごみの収集日と分別を調べられるページです。</p>
+        <p><a href="https://toybox-anime.github.io/toyota-gomi/">ごみ収集日ガイドを開く</a></p>
+      </div>
+    </section>
+  </main>
+</div>
 </body>
 </html>
